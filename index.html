@@ -109,7 +109,7 @@
 <p>Метод: getActualEventsIdsOnly</p>
 <p>Пример использования: <code>http://poligon.cultserv.ru/jtransport/partner/get_actual_events_ids_only?session=123</code></p>
 <p>Метод возвращает исключительно ID событий.
-Может принимать опциональный параметр <code>etickets_only</code>.</p>
+Может принимать опциональный параметр <code>etickets_only</code></p>
 <p>Пример использования: <code>http://poligon.cultserv.ru/jtransport/partner/get_actual_events_ids_only?session=123&amp;etickets_only=true</code></p>
 <hr />
 <p><strong>Используя id категории получить список доступных событий для категории</strong></p>
@@ -123,7 +123,12 @@
 <p>Пример использования: <code>http://poligon.cultserv.ru/jtransport/partner/get_subevent?session=123&amp;id=123</code></p>
 <hr />
 <h3 id="_2">Добавление билетов в корзину</h3>
-<p><strong>В детальном описании выбрать сектор из которого будут добавляться билеты</strong></p>
+<p><strong>Сгенерировать пользовательскую сессию</strong></p>
+<p>Метод: generateUserSession
+<a href="http://api.cultserv.ru/public/docs/methods/#!/user/generateUserSession_get_0">Документация</a></p>
+<p>Пример использования: <code>http://poligon.cultserv.ru/jtransport/partner/generate_user_session?session=123</code></p>
+<hr />
+<p><strong>В детальном описании события выбрать сектор из которого будут добавляться билеты</strong></p>
 <hr />
 <p><strong>Если признак сектора admission : true - это входные билеты, такие билеты можно сразу добавлять в корзину, указав необходимое количество и цену билета</strong>*</p>
 <p>Метод: addAdmission
@@ -131,9 +136,113 @@
 <p>Пример использования: <code>http://poligon.cultserv.ru/jtransport/partner/add_admission?session=123&amp;subevent_id=123&amp;sector_id=123&amp;price=123&amp;count=1&amp;user_session=abc</code></p>
 <hr />
 <p><strong>Если признак сектора admission : false - это билеты с местами, в этом случае надо запросить список доступных билетов и после добавить выбранные билеты в корзину</strong></p>
-<p>Метод: getSector
-<a href="http://api.cultserv.ru/public/docs/methods/#!/sectors/getSector_get_0">Документация</a></p>
-<p>Пример использования: <code>http://poligon.cultserv.ru/jtransport/partner/get_sector?session=123&amp;sector_id=123</code></p>
+<p>Метод: getSectorWithTickets</p>
+<p>Возвращает информацию, необходимую для построения матрицы зала, и информацию о доступных билетах и их стоимости.</p>
+<p>Пример использования: <code>http://poligon.cultserv.ru/jtransport/partner/get_sector_with_tickets?sector_id=123&amp;session=123&amp;subevent_id=123&amp;user_session=abc</code></p>
+<pre class="prettyprint well"><code>{
+  &quot;message&quot;: {
+    &quot;id&quot;: 123,
+    &quot;title&quot;: &quot;Партер&quot;,
+    &quot;count&quot;: 42,
+    &quot;content&quot;: [
+      {
+        &quot;number&quot;: 9,
+        &quot;seats&quot;: [
+          {
+            &quot;n&quot;: 0,
+            &quot;s&quot;: 2,
+            &quot;m&quot;: 0,
+            &quot;p&quot;: 0
+          },
+          {
+            &quot;id&quot;: 6505869,
+            &quot;n&quot;: 68,
+            &quot;s&quot;: 1,
+            &quot;m&quot;: 1,
+            &quot;p&quot;: 4500
+          },
+          {...}
+        ]
+      },
+      {
+        &quot;number&quot;: 10,
+        &quot;seats&quot;: [
+          {...},
+          {
+            &quot;n&quot;: 0,
+            &quot;s&quot;: 2,
+            &quot;m&quot;: 0,
+            &quot;p&quot;: 0
+          },
+          {
+            &quot;id&quot;: 6505869,
+            &quot;n&quot;: 68,
+            &quot;s&quot;: 1,
+            &quot;m&quot;: 1,
+            &quot;p&quot;: 4500
+          },
+          {...}
+        ]
+      }
+    ],
+    &quot;gateway_id&quot;: 1
+  },
+  &quot;code&quot;: 1,
+  &quot;ts&quot;: 1413980609186,
+  &quot;api&quot;: 2.1
+}
+</code></pre>
+
+<p>Где:</p>
+<ul>
+<li>
+<p><code>content[i]</code> - информация о ряде</p>
+<ul>
+<li>
+<p><code>number</code> - номер ряда</p>
+</li>
+<li>
+<p><code>seats[i]</code> - информация о месте</p>
+<ul>
+<li>
+<p><code>id</code> - ID места (если поля нет, значит в этой ячейке матрицы место отсутствует)</p>
+</li>
+<li>
+<p><code>n</code> - номер места, если n = 0, в этой ячейке матрицы место отсутствует</p>
+</li>
+<li>
+<p><code>s</code> - статус места</p>
+<ul>
+<li>
+<p>0 - доступно</p>
+</li>
+<li>
+<p>1 - в корзине</p>
+</li>
+<li>
+<p>любой другой - недоступно</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>m</code></p>
+<ul>
+<li>
+<p>0 - не принадлежит текущему пользователю</p>
+</li>
+<li>
+<p>1 - принадлежит</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>p</code> - цена</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <hr />
 <p>Метод: addTicket
 <a href="http://api.cultserv.ru/public/docs/methods/#!/cart/addTicket_get_1">Документация</a></p>
