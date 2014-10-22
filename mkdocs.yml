@@ -1,0 +1,6 @@
+site_name: Purecode
+theme: spacelab
+#theme_dir: theme
+pages:
+- ["index.md", "Типичная последовательность"]
+- ["print.md", "Печать билетов БСО"]
