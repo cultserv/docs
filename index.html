@@ -138,7 +138,7 @@
 <p><strong>Если признак сектора admission : false - это билеты с местами, в этом случае надо запросить список доступных билетов и после добавить выбранные билеты в корзину</strong></p>
 <p>Метод: getSectorWithTickets</p>
 <p>Возвращает информацию, необходимую для построения матрицы зала, и информацию о доступных билетах и их стоимости.</p>
-<p>Пример использования: <code>http://poligon.cultserv.ru/jtransport/partner/get_sector_with_tickets?sector_id=123&amp;session=123&amp;subevent_id=123&amp;user_session=abc</code></p>
+<p>Пример использования: <code>http://poligon.cultserv.ru/jtransport/v4/sector/get?session=123&amp;sector_id=123&amp;subevent_id=123&amp;user_session=abc</code></p>
 <pre class="prettyprint well"><code>{
   &quot;message&quot;: {
     &quot;id&quot;: 123,
@@ -196,47 +196,51 @@
 <p>Где:</p>
 <ul>
 <li>
-<p><code>content[i]</code> - информация о ряде</p>
-<ul>
-<li>
-<p><code>number</code> - номер ряда</p>
+<p><code>id</code> - ID сектора</p>
 </li>
 <li>
-<p><code>seats[i]</code> - информация о месте</p>
+<p><code>title</code> - Имя сектора</p>
 <ul>
 <li>
-<p><code>id</code> - ID места (если поля нет, значит в этой ячейке матрицы место отсутствует)</p>
+<p><code>content</code> - информация о местах</p>
+<ul>
+<li>
+<p><code>r</code> - номер ряда</p>
 </li>
 <li>
-<p><code>n</code> - номер места, если n = 0, в этой ячейке матрицы место отсутствует</p>
+<p><code>n</code> - номер места</p>
+</li>
+<li>
+<p><code>t</code> - тип места (Справочник: seat_type/list)</p>
+</li>
+<li>
+<p><code>x</code> - координата по горизонтали</p>
+</li>
+<li>
+<p><code>y</code> - координата по вертикали</p>
 </li>
 <li>
 <p><code>s</code> - статус места</p>
 <ul>
 <li>
-<p>0 - доступно</p>
+<p><code>0</code> - доступно</p>
 </li>
 <li>
-<p>1 - в корзине</p>
+<p><code>1</code> - в корзине (если <code>m</code> - true, то в корзине именно этого пользователя по <code>user_session</code>)</p>
 </li>
 <li>
-<p>любой другой - недоступно</p>
+<p><code>любой другой</code> - недоступно</p>
 </li>
 </ul>
 </li>
 <li>
-<p><code>m</code></p>
-<ul>
-<li>
-<p>0 - не принадлежит текущему пользователю</p>
+<p><code>m</code> - флаг принадлежности текущему пользователю (по <code>user_session</code>)</p>
 </li>
 <li>
-<p>1 - принадлежит</p>
-</li>
-</ul>
+<p><code>id</code> - ID билета</p>
 </li>
 <li>
-<p><code>p</code> - цена</p>
+<p><code>p</code> - цена билета</p>
 </li>
 </ul>
 </li>
