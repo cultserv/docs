@@ -139,58 +139,42 @@
 <p>Метод: getSectorWithTickets</p>
 <p>Возвращает информацию, необходимую для построения матрицы зала, и информацию о доступных билетах и их стоимости.</p>
 <p>Пример использования: <code>http://poligon.cultserv.ru/jtransport/v4/sector/get?session=123&amp;sector_id=123&amp;subevent_id=123&amp;user_session=abc</code></p>
-<pre class="prettyprint well"><code>{
+<pre class="prettyprint well"><code>
+{
   &quot;message&quot;: {
-    &quot;id&quot;: 123,
-    &quot;title&quot;: &quot;Партер&quot;,
-    &quot;count&quot;: 42,
+    &quot;id&quot;: 149,
+    &quot;title&quot;: &quot;VIP left 1&quot;,
     &quot;content&quot;: [
       {
-        &quot;number&quot;: 9,
-        &quot;seats&quot;: [
-          {
-            &quot;n&quot;: 0,
-            &quot;s&quot;: 2,
-            &quot;m&quot;: 0,
-            &quot;p&quot;: 0
-          },
-          {
-            &quot;id&quot;: 6505869,
-            &quot;n&quot;: 68,
-            &quot;s&quot;: 1,
-            &quot;m&quot;: 1,
-            &quot;p&quot;: 4500
-          },
-          {...}
-        ]
+        &quot;r&quot;: &quot;1&quot;,
+        &quot;n&quot;: &quot;1&quot;,
+        &quot;t&quot;: 1,
+        &quot;x&quot;: 0,
+        &quot;y&quot;: 0,
+        &quot;id&quot;: 5845068,
+        &quot;s&quot;: 0,
+        &quot;m&quot;: false,
+        &quot;p&quot;: 6000
       },
       {
-        &quot;number&quot;: 10,
-        &quot;seats&quot;: [
-          {...},
-          {
-            &quot;n&quot;: 0,
-            &quot;s&quot;: 2,
-            &quot;m&quot;: 0,
-            &quot;p&quot;: 0
-          },
-          {
-            &quot;id&quot;: 6505869,
-            &quot;n&quot;: 68,
-            &quot;s&quot;: 1,
-            &quot;m&quot;: 1,
-            &quot;p&quot;: 4500
-          },
-          {...}
-        ]
-      }
-    ],
-    &quot;gateway_id&quot;: 1
+        &quot;r&quot;: &quot;1&quot;,
+        &quot;n&quot;: &quot;8&quot;,
+        &quot;t&quot;: 1,
+        &quot;x&quot;: 6,
+        &quot;y&quot;: 2,
+        &quot;id&quot;: null,
+        &quot;s&quot;: 2,
+        &quot;m&quot;: false,
+        &quot;p&quot;: null
+      },
+      {...}
+    ]
   },
   &quot;code&quot;: 1,
-  &quot;ts&quot;: 1413980609186,
-  &quot;api&quot;: 2.1
+  &quot;ts&quot;: 1414599159645,
+  &quot;version&quot;: &quot;2.1&quot;
 }
+
 </code></pre>
 
 <p>Где:</p>
