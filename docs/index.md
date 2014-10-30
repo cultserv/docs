@@ -66,11 +66,11 @@
 
 **Если признак сектора admission : false - это билеты с местами, в этом случае надо запросить список доступных билетов и после добавить выбранные билеты в корзину**
 
-Метод: getSectorWithTickets
+Метод: sector/get
 
 Возвращает информацию, необходимую для построения матрицы зала, и информацию о доступных билетах и их стоимости.
 
-Пример использования: ``http://poligon.cultserv.ru/jtransport/v4/sector/get?session=123&sector_id=123&subevent_id=123&user_session=abc``
+Пример использования: ``http://poligon.cultserv.ru/v4/sector/get?session=123&sector_id=123&subevent_id=123&user_session=abc``
 
 ````
 {
