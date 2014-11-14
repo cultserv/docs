@@ -5,4 +5,5 @@ pages:
 - ["index.md", "Home"]
 - ["typical.md", "Типичная последовательность"]
 - ["print.md", "Печать билетов БСО"]
+- ["methods.md", "Методы"]
 theme: simplex
