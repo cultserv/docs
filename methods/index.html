@@ -104,6 +104,9 @@
         <li class="main "><a href="#_2">Типы площадок</a></li>
         
     
+        <li class="main "><a href="#_3">Оферты</a></li>
+        
+    
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
@@ -160,6 +163,26 @@
 }
 </code></pre>
 
+<h3 id="_3">Оферты</h3>
+<p>Метод: offers/get</p>
+<p>Описание: Метод, возвращающий оферту для указанной сессии (фронтенда).</p>
+<p>Пример использования: <code>http://poligon.cultserv.ru/v4/offers/get?session=123</code></p>
+<pre class="prettyprint well"><code>{
+  &quot;message&quot;: &quot;&lt;p&gt;&lt;b&gt;Соглашение об условиях предоставления ...&lt;/b&gt;&lt;/p&gt;&quot;,
+  &quot;code&quot;: 1,
+  &quot;ts&quot;: 1416303912745,
+  &quot;version&quot;: &quot;2.1&quot;
+}
+</code></pre>
+
+<hr />
+<p>Метод: offers/event/get</p>
+<p>Описание: Метод, возвращающий оферту для указанного события.</p>
+<p>Пример использования: <code>http://poligon.cultserv.ru/v4/offers/event/get?session=123&amp;id=123</code></p>
+<hr />
+<p>Метод: offers/subevent/get</p>
+<p>Описание: Метод, возвращающий оферту для указанного подсобытия.</p>
+<p>Пример использования: <code>http://poligon.cultserv.ru/v4/offers/subevent/get?session=123&amp;id=123</code></p>
 </div>
         </div>
 
