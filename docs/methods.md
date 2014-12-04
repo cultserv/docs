@@ -95,12 +95,12 @@
 
 Метод: templates/redemption
 
-Описание: Метод, возвращающий шаблон времени бронирования для указанной сущности.
+Описание: Метод, возвращающий шаблон максимального времени бронирования для указанной сущности.
 
-Пример использования для события: ``http://poligon.cultserv.ru/v4/templates/redemption?subevent_id=445642&session=123``
+Пример для события: ``http://poligon.cultserv.ru/v4/templates/redemption?subevent_id=445642&session=123``
 
-Пример использования для заказа: ``http://poligon.cultserv.ru/v4/templates/redemption?order_id=7752917&session=123``
+Пример для заказа: ``http://poligon.cultserv.ru/v4/templates/redemption?order_id=7752917&session=123``
 
 *****
 
-Тестовое событие с указанным ограничением по времени выкупа: ``http://poligon.cultserv.ru/jtransport/partner/get_subevent?id=445642&session=123``
+Пример события с указанным ограничением: ``http://poligon.cultserv.ru/jtransport/partner/get_subevent?id=445642&session=123``
