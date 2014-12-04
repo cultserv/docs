@@ -107,6 +107,9 @@
         <li class="main "><a href="#_3">Оферты</a></li>
         
     
+        <li class="main "><a href="#_4">Время брони</a></li>
+        
+    
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
@@ -183,6 +186,13 @@
 <p>Метод: offers/subevent/get</p>
 <p>Описание: Метод, возвращающий оферту для указанного события.</p>
 <p>Пример использования: <code>http://poligon.cultserv.ru/v4/offers/subevent/get?session=123&amp;id=123</code></p>
+<h3 id="_4">Время брони</h3>
+<p>Метод: templates/redemption</p>
+<p>Описание: Метод, возвращающий шаблон времени бронирования для указанной сущности.</p>
+<p>Пример использования для события: <code>http://poligon.cultserv.ru/v4/templates/redemption?subevent_id=445642&amp;session=123</code></p>
+<p>Пример использования для заказа: <code>http://poligon.cultserv.ru/v4/templates/redemption?order_id=7752917&amp;session=123</code></p>
+<hr />
+<p>Тестовое событие с указанным ограничением по времени выкупа: <code>http://poligon.cultserv.ru/jtransport/partner/get_subevent?id=445642&amp;session=123</code></p>
 </div>
         </div>
 
