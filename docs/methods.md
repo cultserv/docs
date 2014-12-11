@@ -104,3 +104,31 @@
 *****
 
 Пример события с указанным ограничением: ``http://poligon.cultserv.ru/jtransport/partner/get_subevent?id=445642&session=123``
+
+### Список касс
+
+Метод: cart/desks/list
+
+Описание: Метод, возвращающий список касс, объединенных в группы по итоговой сумме заказа.
+
+Пример использования: ``http://poligon.cultserv.ru/v4/cart/desks/list?order_id=16219987&session=123``
+
+````
+{
+  "message": [
+    {
+      "desks": [
+        {
+          "id": 774,
+          "name": "В офисе Ponominalu.ru",
+          "google_maps": "55.739732, 37.663717"
+        }
+      ],
+      "total": 105
+    }
+  ],
+  "code": 1,
+  "ts": 1418304203668,
+  "version": "2.1"
+}
+````
