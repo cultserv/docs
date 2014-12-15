@@ -111,7 +111,13 @@
 
 Описание: Метод, возвращающий список касс, объединенных в группы по итоговой сумме заказа.
 
-Пример использования: ``http://poligon.cultserv.ru/v4/cart/desks/list?order_id=16219987&session=123``
+Пример использования: ``http://poligon.cultserv.ru/v4/cart/desks/list?session=123&order_id=16219987&user_sesson=123``
+
+Обязательным параметром является один из предложенных:
+
+* order_id - ID заказа
+
+* user_session - сессия пользователя
 
 ````
 {
