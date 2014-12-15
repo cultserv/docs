@@ -199,7 +199,16 @@
 <h3 id="_5">Список касс</h3>
 <p>Метод: cart/desks/list</p>
 <p>Описание: Метод, возвращающий список касс, объединенных в группы по итоговой сумме заказа.</p>
-<p>Пример использования: <code>http://poligon.cultserv.ru/v4/cart/desks/list?order_id=16219987&amp;session=123</code></p>
+<p>Пример использования: <code>http://poligon.cultserv.ru/v4/cart/desks/list?session=123&amp;order_id=16219987&amp;user_sesson=123</code></p>
+<p>Обязательным параметром является один из предложенных:</p>
+<ul>
+<li>
+<p>order_id - ID заказа</p>
+</li>
+<li>
+<p>user_session - сессия пользователя</p>
+</li>
+</ul>
 <pre class="prettyprint well"><code>{
   &quot;message&quot;: [
     {
