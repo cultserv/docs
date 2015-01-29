@@ -1,9 +1,8 @@
 site_name: Cultserv API
-theme: spacelab
-#theme_dir: theme
 pages:
 - ["index.md", "Home"]
 - ["typical.md", "Типичная последовательность"]
 - ["print.md", "Печать билетов БСО"]
 - ["methods.md", "Методы"]
+- ["eticket.md", "E-ticket"]
 theme: simplex
