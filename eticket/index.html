@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+
+        <title>E-ticket - Cultserv API</title>
+
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../css/prettify-1.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="..">Cultserv API</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../typical">Типичная последовательность</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../print">Печать билетов БСО</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../methods">Методы</a>
+                </li>
+            
+            
+            
+                <li class="active">
+                    <a href=".">E-ticket</a>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li >
+                    <a rel="next" href="../methods">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a rel="prev" >
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#e-ticket">Получение информации о e-ticket</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h3 id="e-ticket">Получение информации о e-ticket</h3>
+<p>Метод: /jtransport/partner/get_eticket<br />
+Параметры:</p>
+<ul>
+<li>user_session - сессия пользователя</li>
+<li>id - идентификатор билета</li>
+</ul>
+<p>Продакшн хост: api.cultserv.ru<br />
+Тестовый хост: poligon.cultserv.ru</p>
+<p>Для получения информации о e-ticket у партнёра должно быть высталено право <strong>print.eticket</strong></p>
+<p>Метод назначает бланк билету, который в последствии будет доступен только тому партнёру,
+который вызвал этот метод. В ответе будет содержаться поле <strong>info.link</strong> со ссылкой на
+готовый к печати билет в формате HTML (по умолчанию). Так же есть возможность получить e-ticket
+в формате PDF. Для этого нужно присоеденить строку <em>".pdf"</em> к ссылке на билет из поля info.link.</p>
+<p>Пример ссылки на получение PDF e-ticket'а
+<code>http://poligon.cultserv.ru/eticket/b2f5843b085452dbe2ff6bfd40a1ee04/35d693081e88b3e839ccb3db52901a3fa4bc8ce7.pdf</code></p>
+<p>Кроме модифицирования самой ссылки на билет, есть возможность управлять форматом билета с помощью HTTP заголовка <strong>Accept</strong>.
+Т.е. для получения билета в формате PDF в заголовке Accept должно быть передано значение "application/pdf".</p>
+<p>Пример JSON ответа метода:</p>
+<pre><code>{
+    &quot;api&quot;: 2.1,
+    &quot;code&quot;: 1,
+    &quot;message&quot;: {
+        &quot;admission&quot;: true,
+        &quot;barcode&quot;: &quot;02000960571300433020&quot;,
+        &quot;blank&quot;: {
+            &quot;defect&quot;: false,
+            &quot;is_fanticket&quot;: false,
+            &quot;number&quot;: 75575,
+            &quot;number_str&quot;: &quot;EP075575&quot;,
+            &quot;seria&quot;: &quot;EP&quot;,
+            &quot;user_id&quot;: 686
+        },
+        &quot;commission&quot;: 0,
+        &quot;id&quot;: 5446130,
+        &quot;info&quot;: {
+            &quot;attention_eng&quot;: &quot;PGg2PkF0dGVudGlvbiE8L2g2Pg0KPHA+4oCUIFRoZSB3aG9sZSBwYWdlIGlzIGEgdGlja2V0LjwvcD4NCjxwPuKAlCBTaW5nbGUgZW50cmFuY2UgZm9yIG9uZSBwZXJzb24gaXMgcmVzb2x2ZWQuPC9wPg0KPHA+4oCUIFVubGF3ZnVsIHJlc2FsZSAob3IgYXR0ZW1wdGVkIHVubGF3ZnVsIHJlc2FsZSkgb2YgYSB0aWNrZXQgaXMgZ3JvdW5kcyBmb3Igc2VpenVyZSBvciBjYW5jZWxsYXRpb24gb2YgdGhhdCB0aWNrZXQgd2l0aG91dCByZWZ1bmQgb3Igb3RoZXIgY29tcGVuc2F0aW9uLjwvcD4NCjxwPuKAlCBJdCBpcyBwcm9oaWJpdGVkIHRvIG1ha2UgZHVwbGljYXRlcyBvZiBhIHRpY2tldC4gT25lIHRpY2tldCBmb3Igb25lIHBlcnNvbiBmb3IgYSBzaW5nbGUgZW50cmFuY2UuPC9wPg0KPHA+4oCUIFByb21vdGVyL1ZlbnVlIE93bmVyIHJlc2VydmVzIHRoZSByaWdodCB0byBkZW1hbmQgcGFzc3BvcnQgb3IgYW55IG90aGVyIElEIG9mIHRoZSB0aWNrZXQgaG9sZGVyLjwvcD4NCjxwPkNvbnRhY3QgdXM6IDggODAwIDU1NS04MC0xMTwvcD4NCjxwPlRpY2tldHMgY2FuIGJlIGV4Y2hhbmdlZCBvciByZWZ1bmRlZCBhZnRlciBwdXJjaGFzZSBpbiBjYXNlIG9mIGNhbmNlbGxlZCBhbmQgcmVzY2hlZHVsZWQgZXZlbnRzLiBUbyBleGNoYW5nZSB5b3VyIHRpY2tldHMgY29udGFjdCBMaW1pdGVkIExpYWJpbGl0eSBDb21wYW55IOKAnEt1bHR1cm5heWEgU2x1emhiYeKAnSAocmVnaXN0ZXJlZCBudW1iZXIgMTEwNzc0NjA2NTQyNiwgYWRkcmVzcyBUYWdhbnNrYXkgc3RyLiwgMjYsIGJ1aWxkLjEsIE1vc2NvdywgMTA5MTQ3LCB0ZWwuKDQ5NSkyMjgtMjA4MCkuPC9wPg==&quot;,
+            &quot;attention_rus&quot;: &quot;PGg2PtCS0L3QuNC80LDQvdC40LUhPC9oNj4NCjxwPiAg4oCUINCS0YHRjyDRgdGC0YDQsNC90LjRhtCwINGP0LLQu9GP0LXRgtGB0Y8g0LHQuNC70LXRgtC+0LwuPC9wPg0KPHA+ICDigJQg0JLRhdC+0LQg0L3QsCDQvNC10YDQvtC/0YDQuNGP0YLQuNC1INC/0L4g0LHQuNC70LXRgtGDINCy0L7Qt9C80L7QttC10L0g0YLQvtC70YzQutC+INC+0LTQuNC9INGA0LDQtyDQuCDRgtC+0LvRjNC60L4g0L7QtNC90L7QvNGDINGH0LXQu9C+0LLQtdC60YMuPC9wPg0KPHA+ICDigJQg0J3QtSDQv9GA0LjQvtCx0YDQtdGC0LDQudGC0LUg0Y3Qu9C10LrRgtGA0L7QvdC90YvQtSDQsdC40LvQtdGC0Ysg0YEg0YDRg9C6LjwvcD4NCjxwPiAg4oCUINCd0LUg0LTQvtC/0YPRgdC60LDQudGC0LUg0LrQvtC/0LjRgNC+0LLQsNC90LjRjyDRjdC70LXQutGC0YDQvtC90L3QvtCz0L4g0LHQuNC70LXRgtCwLiDQndCwINC80LXRgNC+0L/RgNC40Y/RgtC40LUg0YHQvNC+0LbQtdGCINC/0L7Qv9Cw0YHRgtGMINGC0L7Qu9GM0LrQviDQvtC00LjQvSDRh9C10LvQvtCy0LXQuiDQv9C+INC+0LTQvdC+0LzRgyDQtS3RgtC40LrQtdGC0YMuINCU0L7Qv9GD0YHQutCw0Y8g0LrQvtC/0LjRgNC+0LLQsNC90LjQtSwg0JLRiyDRgNC40YHQutGD0LXRgtC1INC90LUg0L/QvtC/0LDRgdGC0Ywg0L3QsCDQvNC10YDQvtC/0YDQuNGP0YLQuNC1LjwvcD4NCjxwPiAg4oCUINCf0YDQuCDQv9C+0YHQtdGJ0LXQvdC40Lgg0LzQtdGA0L7Qv9GA0LjRj9GC0LjRjyDQvtGA0LPQsNC90LjQt9Cw0YLQvtGAINCy0L/RgNCw0LLQtSDQv9C+0YLRgNC10LHQvtCy0LDRgtGMINC/0YDQtdC00YrRj9Cy0LjRgtGMINC/0LDRgdC/0L7RgNGCINC40LvQuCDQuNC90L7QuSDQtNC+0LrRg9C80LXQvdGCLCDRg9C00L7RgdGC0L7QstC10YDRj9GO0YnQuNC5INC70LjRh9C90L7RgdGC0Ywg0LLQu9Cw0LTQtdC70YzRhtCwINCx0LjQu9C10YLQsC48L3A+DQo8cD7QmtC+0L3RgtCw0YLQvdGL0LUg0YLQtdC70LXRhNC+0L3RizogOCA4MDAgNTU1LTgwLTExPC9wPg==&quot;,
+            &quot;code&quot;: &quot;262920&quot;,
+            &quot;image&quot;: &quot;&quot;,
+            &quot;link&quot;: &quot;http://poligon.cultserv.ru/eticket/b2f5843b085452dbe2ff6bfd40a1ee04/35d693081e88b3e839ccb3db52901a3fa4bc8ce7&quot;,
+            &quot;org_info&quot;: &quot;0J7RgNCz0LDQvdC40LfQsNGC0L7RgDog0J7QntCeIMKr0JrRg9C70YzRgtC/0YDQvtC00YPQutGCwrsuINCzLtCh0LDQvdC60YIt0J/QtdGC0LXRgNCx0YPRgNCzLCDQv9GA0L7RgdC/0LXQutGCINCt0L3RgtGD0LfQuNCw0YHRgtC+0LIsINC00L7QvCA0Nywg0LrQvtGA0L/Rg9GBMS4g0JjQndCdOiA3ODA2NDkxNDQ1CtCQ0LPQtdC90YI6INCe0J7QniDCq9Ca0YPQu9GM0YLRg9GA0L3QsNGPINGB0LvRg9C20LHQsMK7LiAxMDkxNDcsINCzLtCc0L7RgdC60LLQsCwg0YPQuy7QotCw0LPQsNC90YHQutCw0Y8sINC0LjI2LCDRgdGC0YAuMS4g0JjQndCdOiA3NzA3NzE5Mjk3CtCj0YLQstC10YDQttC00LXQvdC+INC/0YDQuNC60LDQt9C+0Lwg0LzQuNC90LjRgdGC0LXRgNGB0YLQstCwINCa0YPQu9GM0YLRg9GA0Ysg0KDQvtGB0YHQuNC50YHQutC+0Lkg0KTQtdC00LXRgNCw0YbQuNC4INC+0YIgMjUuMTIuMjAwOCDihJYyNTc=&quot;,
+            &quot;return_info_eng&quot;: &quot;PHA+UmV0dXJuL2NoYW5nZSBvZiB0aWNrZXRzIGlzIHBvc3NpYmxlIGluIGNhc2Ugb2YgY2FuY2VsbGF0aW9uLCBzdWJzdGl0dXRpb24gb3IgdHJhbnNmZXIgb2YgdGhlIGV2ZW50LiBGb3IgcmV0dXJuL2NoYW5nZSBvZiB0aWNrZXRzIGNvbnRhY3QgdG8gTGltaXRlZCBMaWFiaWxpdHkgQ29tcGFueSDigJxLdWx0dXJuYXlhIFNsdXpoYmHigJ0gKHJlZ2lzdGVyZWQgbnVtYmVyIDExMDc3NDYwNjU0MjYsIGFkZHJlc3MgVGFnYW5za2F5IHN0ci4sIDI2LCBidWlsZC4xLCBNb3Njb3csIDEwOTE0NywgdGVsLig0OTUpMjI4LTIwODApLjwvcD4=&quot;,
+            &quot;return_info_rus&quot;: &quot;PHA+0JLQvtC30LLRgNCw0YIg0Lgv0LjQu9C4INC30LDQvNC10L3QsCDQsdC40LvQtdGC0L7QsiDQstC+0LfQvNC+0LbQvdCwINCyINGB0LvRg9GH0LDQtSDQvtGC0LzQtdC90YssINC30LDQvNC10L3RiyDQuNC70Lgg0L/QtdGA0LXQvdC+0YHQsCDQvNC10YDQvtC/0YDQuNGP0YLQuNGPLiDQl9CwINCy0L7Qt9Cy0YDQsNGC0L7QvCDQuC/QuNC70Lgg0LfQsNC80LXQvdC+0Lkg0LHQuNC70LXRgtCwINC+0LHRgNCw0YnQsNGC0YzRgdGPINCyINCe0LHRidC10YHRgtCy0L4g0YEg0L7Qs9GA0LDQvdC40YfQtdC90L3QvtC5INC+0YLQstC10YLRgdGC0LLQtdC90L3QvtGB0YLRjNGOIMKr0JrRg9C70YzRgtGD0YDQvdCw0Y8g0YHQu9GD0LbQsdCwwrsgKNCe0JPQoNCdIDExMDc3NDYwNjU0MjYuINCQ0LTRgNC10YE6IDEwOTE0Nywg0LMuINCc0L7RgdC60LLQsCwg0YPQuy4g0KLQsNCz0LDQvdGB0LrQsNGPLCDQtC4yNiwg0YHRgtGALjEsINGC0LXQuy4gKDQ5NSkyMjgtMjA4MCkuPC9wPg==&quot;,
+            &quot;to_pdf&quot;: false,
+            &quot;topline_eng&quot;: &quot;This page is considered as a ticket. Valid to the entrance&quot;,
+            &quot;topline_rus&quot;: &quot;Вся страница является билетом. Действителен ко входу&quot;
+        },
+        &quot;nds_included&quot;: false,
+        &quot;order&quot;: {
+            &quot;date&quot;: 1421444656378,
+            &quot;email&quot;: &quot;millir_nika@mail.ru&quot;,
+            &quot;id&quot;: 19413756,
+            &quot;is_mine&quot;: false,
+            &quot;name&quot;: &quot;Прусова Вера Валерьевна&quot;,
+            &quot;payment_method&quot;: {
+                &quot;code&quot;: 7,
+                &quot;paid&quot;: true,
+                &quot;status&quot;: &quot;epayment.status.payment_successful&quot;,
+                &quot;title&quot;: &quot;Терминалы QIWI и QIWI-кошелёк&quot;
+            },
+            &quot;phone&quot;: &quot;89055662254&quot;,
+            &quot;selfget&quot;: true,
+            &quot;status&quot;: 3,
+            &quot;typeofpayment&quot;: {
+                &quot;epayment&quot;: true,
+                &quot;icon&quot;: &quot;/basket/pm_qiwi.png&quot;,
+                &quot;id&quot;: 4,
+                &quot;priority&quot;: 6,
+                &quot;title&quot;: &quot;Терминалы QIWI и QIWI-кошелёк&quot;
+            },
+            &quot;typeofsale&quot;: {
+                &quot;icon&quot;: &quot;/basket/del_eticket.png&quot;,
+                &quot;id&quot;: 4,
+                &quot;priority&quot;: 10,
+                &quot;title&quot;: &quot;Eticket&quot;
+            }
+        },
+        &quot;order_id&quot;: 19413756,
+        &quot;price&quot;: 1800,
+        &quot;row&quot;: 2,
+        &quot;seat&quot;: 3,
+        &quot;sector&quot;: {
+            &quot;id&quot;: 5927,
+            &quot;title&quot;: &quot;Входной билет&quot;
+        },
+        &quot;subevent&quot;: {
+            &quot;age&quot;: 16,
+            &quot;date&quot;: 1428253200000,
+            &quot;has_offer&quot;: false,
+            &quot;id&quot;: 462241,
+            &quot;title&quot;: &quot;Eisbrecher&quot;,
+            &quot;venue&quot;: {
+                &quot;address&quot;: &quot;Москва, Бумажный пр-д, д. 19/3&quot;,
+                &quot;eng_title&quot;: &quot;&quot;,
+                &quot;id&quot;: 1001,
+                &quot;title&quot;: &quot;Клуб Volta&quot;
+            }
+        },
+        &quot;supplier&quot;: {
+            &quot;id&quot;: 1290,
+            &quot;inn&quot;: &quot;7806491445&quot;,
+            &quot;legal_address&quot;: &quot;г.Санкт-Петербург, проспект Энтузиастов, дом 47, корпус1&quot;,
+            &quot;name&quot;: &quot;ООО «Культпродукт»&quot;
+        }
+    },
+    &quot;ts&quot;: 1422550381315
+}
+</code></pre>
+
+</div>
+        </div>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/prettify-1.0.min.js"></script>
+        <script src="../js/base.js"></script>
+    </body>
+</html>
