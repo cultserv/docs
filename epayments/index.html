@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+
+        <title>Регистрация заказа для оплаты - Cultserv API</title>
+
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../css/prettify-1.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="..">Cultserv API</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../typical">Типичная последовательность</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../print">Печать билетов БСО</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../methods">Методы</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../eticket">E-ticket</a>
+                </li>
+            
+            
+            
+                <li class="active">
+                    <a href=".">Регистрация заказа для оплаты</a>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li >
+                    <a rel="next" href="../eticket">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a rel="prev" >
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#_1">Вызов метода</a></li>
+        
+    
+        <li class="main "><a href="#-">Альфа-Клик</a></li>
+        
+            <li><a href="#_2">Коды ошибок</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<p>В новой версии API (от 27.08.2013) появился метод для регистрации заказа в любой
+из поддерживаемых систем оплаты.</p>
+<p>На данный момент существует поддержка следующих систем:</p>
+<ul>
+<li>Альфа-Банк</li>
+<li>Робокасса</li>
+<li>Яндекс.Деньги</li>
+<li>Альфа-Клик</li>
+</ul>
+<h2 id="_1">Вызов метода</h2>
+<p><code>http://api.cultserv.ru/jtransport/partner/payments/register_order</code></p>
+<p>Обязательный параметр <code>order_id</code> номер заказа, полученный после оформления.
+Вызывать метод нужно только если <code>typeofpayment</code> для заказа содержит поле <code>epayment</code> равное true.</p>
+<p>Успешный ответ должен содержать строку со ссылкой на страницу оплаты.
+Клиентское приложение должно сделать редирект на эту ссылку. После того, как
+клиент оплатит нужную сумму, наш API получит уведомление о результатах платежа
+и покажет клиенту сообщение с результатами платежа. На этом оформление заказа
+считается завершенным.</p>
+<h1 id="-">Альфа-Клик</h1>
+<p>Если клиент выбрал способ оплаты через Альфа-Клик, то при регистрации заказа
+для оплаты нужно будет передать параметр <code>bank_client_id</code> (String), который
+содержит ID клиента в системе Альфа-Клик. После успешной валидации клиента и
+выставления счета, метод вернет ссылку для редиректа на гланвую страницу
+Альфа-Клика. После чего клиент должен будет войти в систему под своим логином
+и паролем и оплатить выставленный счет.</p>
+<h2 id="_2">Коды ошибок</h2>
+<ul>
+<li>0 - заказ не может быть найден</li>
+<li>-143 - заказ находится в некорректном состоянии. Либо он уже был выполнен,
+  либо уже был оплачен.</li>
+<li>-176 - для заказа не выбран способ оплаты</li>
+<li>-146 - во время регистрации заказа в платежной системе произошла ошибка на их
+  стороне. Попробуйте повторить операцию позднее.</li>
+<li>-177 - заказ не может быть зарегистрирован, т.к. выбранный метод оплаты для
+  заказа не поддерживается</li>
+<li>-147 - ошибка платежного шлюза. Текст ошибки может быть разным. Этот текст
+  можно показать пользователю. Повторный запрос скорее всего даст ту же ошибку.</li>
+<li>-200 - ошибка валидации параметров. Выкидывается только если typeofpayment = 6
+  (т.е. Альфа-Клик) и параметр bank_client_id не был передан.</li>
+</ul>
+</div>
+        </div>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/prettify-1.0.min.js"></script>
+        <script src="../js/base.js"></script>
+    </body>
+</html>

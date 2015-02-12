@@ -21,8 +21,6 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-
-        
     </head>
 
     <body>
@@ -50,26 +48,32 @@
             <ul class="nav navbar-nav">
             
             
-                <li >
-                    <a href="..">Home</a>
-                </li>
-            
-            
-            
                 <li class="active">
-                    <a href="./">Типичная последовательность</a>
+                    <a href=".">Типичная последовательность</a>
                 </li>
             
             
             
                 <li >
-                    <a href="../print/">Печать билетов БСО</a>
+                    <a href="../print">Печать билетов БСО</a>
                 </li>
             
             
             
                 <li >
-                    <a href="../methods/">Методы</a>
+                    <a href="../methods">Методы</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../eticket">E-ticket</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../epayments">Регистрация заказа для оплаты</a>
                 </li>
             
             
@@ -84,7 +88,7 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../print/">
+                    <a rel="prev" href="../print">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -151,7 +155,7 @@
 <p>Метод: sector/get</p>
 <p>Возвращает информацию, необходимую для построения матрицы зала, и информацию о доступных билетах и их стоимости.</p>
 <p>Пример использования: <code>http://poligon.cultserv.ru/v4/sector/get?session=123&amp;sector_id=123&amp;subevent_id=123&amp;user_session=abc</code></p>
-<pre class="prettyprint well"><code>{
+<pre><code>{
   &quot;message&quot;: {
     &quot;id&quot;: 149,
     &quot;title&quot;: &quot;VIP left 1&quot;,
