@@ -5,4 +5,5 @@ pages:
 - ["print.md", "Печать билетов БСО"]
 - ["methods.md", "Методы"]
 - ["eticket.md", "E-ticket"]
+- ["epayments.md", "Регистрация заказа для оплаты"]
 theme: simplex
