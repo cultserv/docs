@@ -21,6 +21,8 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
+
+        
     </head>
 
     <body>
@@ -49,31 +51,37 @@
             
             
                 <li >
-                    <a href="../typical">Типичная последовательность</a>
+                    <a href="..">Home</a>
                 </li>
             
             
             
                 <li >
-                    <a href="../print">Печать билетов БСО</a>
+                    <a href="../typical/">Типичная последовательность</a>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../print/">Печать билетов БСО</a>
                 </li>
             
             
             
                 <li class="active">
-                    <a href=".">Методы</a>
+                    <a href="./">Методы</a>
                 </li>
             
             
             
                 <li >
-                    <a href="../eticket">E-ticket</a>
+                    <a href="../eticket/">E-ticket</a>
                 </li>
             
             
             
                 <li >
-                    <a href="../epayments">Регистрация заказа для оплаты</a>
+                    <a href="../epayments/">Регистрация заказа для оплаты</a>
                 </li>
             
             
@@ -83,12 +91,12 @@
             <ul class="nav navbar-nav navbar-right">
                 
                 <li >
-                    <a rel="next" href="../print">
+                    <a rel="next" href="../print/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../eticket">
+                    <a rel="prev" href="../eticket/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -117,6 +125,12 @@
         <li class="main "><a href="#_5">Список касс</a></li>
         
     
+        <li class="main "><a href="#_6">Статус заявки на возврат</a></li>
+        
+    
+        <li class="main "><a href="#_7">Список статусов заявки на возврат</a></li>
+        
+    
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
@@ -124,7 +138,7 @@
 <h3 id="_1">Список площадок</h3>
 <p>Метод: venues/list</p>
 <p>Пример использования: <code>http://poligon.cultserv.ru/v4/venues/list?session=123</code></p>
-<pre><code>{
+<pre class="prettyprint well"><code>{
   &quot;message&quot;: [
     {
       &quot;id&quot;: 1,
@@ -153,7 +167,7 @@
 <h3 id="_2">Типы площадок</h3>
 <p>Метод: venues/list</p>
 <p>Пример использования: <code>http://poligon.cultserv.ru/v4/venues/types/list?session=123</code></p>
-<pre><code>{
+<pre class="prettyprint well"><code>{
   &quot;message&quot;: [
     {
       &quot;id&quot;: 1,
@@ -177,7 +191,7 @@
 <p>Метод: offers/get</p>
 <p>Описание: Метод, возвращающий оферту для указанной сессии (фронтенда).</p>
 <p>Пример использования: <code>http://poligon.cultserv.ru/v4/offers/get?session=123</code></p>
-<pre><code>{
+<pre class="prettyprint well"><code>{
   &quot;message&quot;: &quot;&lt;p&gt;&lt;b&gt;Соглашение об условиях предоставления ...&lt;/b&gt;&lt;/p&gt;&quot;,
   &quot;code&quot;: 1,
   &quot;ts&quot;: 1416303912745,
@@ -213,7 +227,7 @@
 <p>user_session - сессия пользователя</p>
 </li>
 </ul>
-<pre><code>{
+<pre class="prettyprint well"><code>{
   &quot;message&quot;: [
     {
       &quot;desks&quot;: [
@@ -232,6 +246,38 @@
 }
 </code></pre>
 
+<hr />
+<h3 id="_6">Статус заявки на возврат</h3>
+<p>Метод: refunds/status/byTicketId</p>
+<p>Описание: Метод, возвращающий статус заявки на возврат по ID билета и ID заказа.</p>
+<p>Пример использования: <code>http://poligon.cultserv.ru/v4/refunds/status/byTicketId?ticket_id=123&amp;order_id=123&amp;session=123</code></p>
+<p>Параметры:</p>
+<ul>
+<li>
+<p>ticket_id - ID билета</p>
+</li>
+<li>
+<p>order_id - ID заказа</p>
+</li>
+</ul>
+<pre class="prettyprint well"><code>{
+   &quot;message&quot;: {
+      &quot;id&quot;: 123,
+      &quot;date_creation&quot;: 1433157839208,
+      &quot;date_accept&quot;: 1433157934952,
+      &quot;date_reject&quot;: null,
+      &quot;status&quot;: 3
+   },
+   &quot;code&quot;: 1,
+   &quot;ts&quot;: 1433239059044,
+   &quot;version&quot;: &quot;2.1&quot;
+}
+</code></pre>
+
+<h3 id="_7">Список статусов заявки на возврат</h3>
+<p>Метод: refunds/status/list</p>
+<p>Описание: Метод, возвращающий список возможных статусов заявки на возврат.</p>
+<p>Пример использования: <code>http://poligon.cultserv.ru/v4/refunds/status/list?session=123</code></p>
 </div>
         </div>
 
