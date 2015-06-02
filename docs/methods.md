@@ -138,3 +138,42 @@
   "version": "2.1"
 }
 ````
+
+*****
+
+### Статус заявки на возврат
+
+Метод: refunds/status/byTicketId
+
+Описание: Метод, возвращающий статус заявки на возврат по ID билета и ID заказа.
+
+Пример использования: ``http://poligon.cultserv.ru/v4/refunds/status/byTicketId?ticket_id=123&order_id=123&session=123``
+
+Параметры:
+
+* ticket_id - ID билета
+
+* order_id - ID заказа
+
+````
+{
+   "message": {
+      "id": 123,
+      "date_creation": 1433157839208,
+      "date_accept": 1433157934952,
+      "date_reject": null,
+      "status": 3
+   },
+   "code": 1,
+   "ts": 1433239059044,
+   "version": "2.1"
+}
+````
+
+### Список статусов заявки на возврат
+
+Метод: refunds/status/list
+
+Описание: Метод, возвращающий список возможных статусов заявки на возврат.
+
+Пример использования: ``http://poligon.cultserv.ru/v4/refunds/status/list?session=123``
