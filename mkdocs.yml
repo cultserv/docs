@@ -1,0 +1,9 @@
+site_name: Cultserv API
+pages:
+- ["index.md", "Home"]
+- ["typical.md", "Типичная последовательность"]
+- ["print.md", "Печать билетов БСО"]
+- ["methods.md", "Методы"]
+- ["eticket.md", "E-ticket"]
+- ["epayments.md", "Регистрация заказа для оплаты"]
+theme: simplex
