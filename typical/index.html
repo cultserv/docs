@@ -151,13 +151,27 @@
 <p>Метод: generateUserSession
 <a href="http://api.cultserv.ru/public/docs/methods/#!/user/generateUserSession_get_0">Документация</a></p>
 <p>Пример использования: <code>http://poligon.cultserv.ru/jtransport/partner/generate_user_session?session=123</code></p>
+<p>Вы можете сами сгенерировать пользовательскую сессию: это случайная последовательность любых знаков длинной не более 255 символов. Используйте, пожалуйста, уникальный префикс (например имя вашей компании) и добавляйте время генерации, чтобы исключить возможность пересечения сессий.  </p>
 <hr />
 <p><strong>В детальном описании события выбрать сектор из которого будут добавляться билеты</strong></p>
 <hr />
-<p><strong>Если признак сектора admission : true - это входные билеты, такие билеты можно сразу добавлять в корзину, указав необходимое количество и цену билета</strong>*</p>
-<p>Метод: addAdmission
-<a href="http://api.cultserv.ru/public/docs/methods/#!/cart/addAdmission_get_0">Документация</a></p>
-<p>Пример использования: <code>http://poligon.cultserv.ru/jtransport/partner/add_admission?session=123&amp;subevent_id=123&amp;sector_id=123&amp;price=123&amp;count=1&amp;user_session=abc</code></p>
+<p><strong>Если признак сектора admission : true - это входные билеты, такие билеты можно сразу добавлять в корзину, указав необходимое количество и цену билета</strong></p>
+<p>Метод: cart/add</p>
+<p>Параметры для билетов без мест:</p>
+<ul>
+<li>subevent_id (int) - ID события</li>
+<li>sector_id  (int) - ID сектора</li>
+<li>user_session (string) - пользовательская сессия</li>
+<li>price (int) - цена билета</li>
+<li>count (int) - количество билетов</li>
+</ul>
+<p>Пример использования: <code>http://poligon.cultserv.ru/v4/cart/add?session=123&amp;user_session=abc&amp;subevent_id=473856&amp;sector_id=123&amp;price=1000&amp;count=2</code></p>
+<p>В случае успешного добавления метод возвращает корзину (результат выполнения метода cart/get)</p>
+<p>Возможные ошибки:</p>
+<ul>
+<li>-6: Нет достаточного количества свободных билетов.</li>
+<li>-43: Превышен лимит добавления билетов в одну корзину (message содержит текст, который можно транслировать пользователю напрямую, например «Нельзя положить в корзину более 20 билетов»).</li>
+</ul>
 <hr />
 <p><strong>Если признак сектора admission : false - это билеты с местами, в этом случае надо запросить список доступных билетов и после добавить выбранные билеты в корзину</strong></p>
 <p>Метод: sector/get</p>
@@ -254,9 +268,20 @@
 </li>
 </ul>
 <hr />
-<p>Метод: addTicket
-<a href="http://api.cultserv.ru/public/docs/methods/#!/cart/addTicket_get_1">Документация</a></p>
-<p>Пример использования: <code>http://poligon.cultserv.ru/jtransport/partner/add_ticket?session=123&amp;ticket_id=123&amp;user_session=abc&amp;subevent_id=123&amp;sector_id=123</code></p>
+<p><strong>Добавляем выбранные пользователем места</strong></p>
+<p>Метод: cart/add</p>
+<p>Параметры для билетов с местами:</p>
+<ul>
+<li>subevent_id (int) - ID события</li>
+<li>sector_id  (int) - ID сектора</li>
+<li>user_session (string) - пользовательская сессия</li>
+<li>ticket_id - ID билета</li>
+</ul>
+<p>Пример использования: <code>http://poligon.cultserv.ru/v4/cart/add?session=123&amp;user_session=abc&amp;subevent_id=473856&amp;sector_id=123&amp;ticket_id=123</code></p>
+<p>В случае успешного добавления метод возвращает корзину (результат выполнения метода cart/get)</p>
+<p>Возможные ошибки:
+<em> -250: Operation Faild (при попытке добавить недоступный билет).
+</em> -43: Превышен лимит добавления билетов в одну корзину (message содержит текст, который можно транслировать пользователю напрямую, например «Нельзя положить в корзину более 20 билетов»).</p>
 <hr />
 <h3 id="_3">Оформление заказа</h3>
 <p><strong>Добавив билеты в корзину - можно указать данные пользователя</strong></p>
